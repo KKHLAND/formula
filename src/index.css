@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=JetBrains+Mono:wght@400;700;800&family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;700;900&family=JetBrains+Mono:wght@400;700;800&family=Nanum+Myeongjo:wght@400;700;800&display=swap');
 @import "tailwindcss";
 @import "katex/dist/katex.min.css";
 
 @theme {
-  --font-sans: "Space Grotesk", "Pretendard", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Arial", "Noto Sans KR", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   --font-myeongjo: "Nanum Myeongjo", serif;
   --font-roman: "Times New Roman", Times, "Nanum Myeongjo", serif;
@@ -12,6 +12,7 @@
 body {
   background-color: #0E0E0E;
   color: #FFFFFF;
+  font-family: "Arial", "Noto Sans KR", sans-serif;
 }
 
 @layer utilities {
