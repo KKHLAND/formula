@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=JetBrains+Mono:wght@400;700;800&family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+@theme {
+  --font-sans: "Space Grotesk", "Pretendard", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-myeongjo: "Nanum Myeongjo", serif;
+  --font-roman: "Times New Roman", Times, "Nanum Myeongjo", serif;
+}
+
+body {
+  background-color: #0E0E0E;
+  color: #FFFFFF;
+}
+
+@layer utilities {
+  /* 카드 회전을 위한 3D 원근법과 뒷면 숨김 유틸리티 */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* 강렬한 네온 입체 그림자 */
+  .shadow-neo-green {
+    box-shadow: 8px 8px 0px #00FF41;
+  }
+  .shadow-neo-green-lg {
+    box-shadow: 16px 16px 0px #00FF41;
+  }
+  .shadow-neo-white {
+    box-shadow: 6px 6px 0px #FFFFFF;
+  }
+  .shadow-neo-red {
+    box-shadow: 8px 8px 0px #FF3B30;
+  }
+
+  /* 틱커 무한 마키 효과 */
+  .animate-marquee {
+    animation: marquee-scroll 25s linear infinite;
+  }
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 인쇄 스타일 정의 (교사용 공식 시험 배포본 최적화) */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  header, footer, nav, button, .no-print, .ticker-footer {
+    display: none !important;
+  }
+  .print-area {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .print-card {
+    page-break-inside: avoid;
+    border: 2px solid #000000 !important;
+    box-shadow: none !important;
+    background: white !important;
+    color: black !important;
+    margin-bottom: 2rem !important;
+  }
+}
+
+

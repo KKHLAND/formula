@@ -1,0 +1,6 @@
+{
+  "name": "고교 수학 공식 암기 마스터",
+  "description": "2022 개정 교육과정(행렬 반영) 고등학교 수학 전 과목 공식 암기 학습 도구입니다. 카드 뒤집기 자학자습, 퀴즈 평가, 중요도 필터링 및 인쇄 최적화 출력 기능을 갖추고 있습니다.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
