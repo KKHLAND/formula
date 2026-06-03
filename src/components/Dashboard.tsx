@@ -99,7 +99,7 @@ export function Dashboard({ formulas, studyState, onNavigate }: DashboardProps) 
           </span>
           <h2 className="text-3xl md:text-5xl font-black tracking-tighter leading-[0.95] text-white">
             수학 공식 암기 마스터<br />
-            <span className="text-[#00FF41] font-roman text-[21px] md:text-[34px] font-black italic block mt-2 tracking-wide">FORMULA SYSTEM 2022</span>
+            <span className="text-[#00FF41] font-[Georgia,serif] text-[21px] md:text-[34px] font-black italic block mt-2 tracking-wide">FORMULA SYSTEM</span>
           </h2>
           <p className="text-sm md:text-base text-white/70 leading-relaxed font-mono antialiased text-justify break-keep">
             에빙하우스 망각 곡선 기반 3D 암기 카드로 취약점을 과학적으로 진단하고, 22개정 행렬 추가 등 학교 현장에 즉각 투입 가능한 수업/학생 배포용 PDF 공식집을 인쇄하세요.
