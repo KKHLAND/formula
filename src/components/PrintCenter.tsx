@@ -37,7 +37,68 @@ export function PrintCenter({
       : formulas.filter((f) => f.subject === selectedSubject);
 
   const handlePrint = () => {
-    window.print();
+    try {
+      const printWindow = window.open("", "_blank");
+      if (printWindow) {
+        // 부모 창의 모든 스타일시트와 스타일 태그를 수집하여 자식 창에 주입
+        const styles = Array.from(document.querySelectorAll("link[rel='stylesheet'], style"))
+          .map((style) => style.outerHTML)
+          .join("\n");
+        
+        const printArea = document.querySelector(".print-area");
+        const printContent = printArea ? printArea.innerHTML : "인쇄 내용이 비어있습니다.";
+
+        printWindow.document.write(`
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <title>${printTitle}</title>
+              <meta charset="utf-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              ${styles}
+              <style>
+                @media print {
+                  body {
+                    background: white !important;
+                    color: black !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                  }
+                  .no-print {
+                    display: none !important;
+                  }
+                }
+                body {
+                  font-family: "Arial", "Noto Sans KR", sans-serif;
+                  background: white;
+                  color: black;
+                }
+              </style>
+            </head>
+            <body class="bg-white text-black p-6 md:p-12">
+              <div class="max-w-4xl mx-auto print-area leading-relaxed">
+                ${printContent}
+              </div>
+              <script>
+                // 스타일 및 KaTeX 수식 로딩 후 인쇄 창 띄우기
+                window.addEventListener('load', () => {
+                  setTimeout(() => {
+                    window.focus();
+                    window.print();
+                  }, 800);
+                });
+              </script>
+            </body>
+          </html>
+        `);
+        printWindow.document.close();
+      } else {
+        // 팝업이 차단된 경우 fallback으로 현재 창 인쇄 시도
+        window.print();
+      }
+    } catch (e) {
+      window.print();
+    }
   };
 
   const addAllOfSubject = () => {
@@ -161,14 +222,17 @@ export function PrintCenter({
             )}
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-col items-end gap-1.5 max-w-xs">
             <button
               onClick={handlePrint}
-              className="inline-flex items-center gap-2 rounded-md bg-[#00FF41] hover:bg-[#00FF41]/85 text-black px-6 py-3 text-xs font-black uppercase tracking-widest border-2 border-black hover:scale-[1.02] active:scale-95 transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-md bg-[#00FF41] hover:bg-[#00FF41]/85 text-black px-6 py-3 text-xs font-black uppercase tracking-widest border-2 border-black hover:scale-[1.02] active:scale-95 transition-all cursor-pointer w-full justify-center"
             >
               <Printer className="h-4.5 w-4.5" />
-              출력물 인쇄하기 (Ctrl+P)
+              출력물 인쇄하기
             </button>
+            <span className="text-[10px] text-white/50 font-sans tracking-tight text-right leading-normal">
+              ※ 브라우저 iFrame 인쇄 제한 우회를 위해 인쇄 전용 새 창이 열립니다. 팝업이 차단되면 허용해 주세요. (또는 Ctrl+P 입력)
+            </span>
           </div>
         </div>
       </div>
